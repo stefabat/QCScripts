@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
 import os		# For file- and path-related stuff
+import readline, glob
 
 print('\n\t\tHello! Welcome to the Quantum Chemistry input generation program!\n')
+
 
 def get_parameters():
 	molecule = get_xyz()	# parse the molecule from an xyz file
@@ -59,7 +61,7 @@ def get_spin():
 				return int(float(spin))
 			else:
 				continue
-				
+
 		else:
 			continue
 
