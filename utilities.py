@@ -1,12 +1,24 @@
 
-import readline, glob, os
-def complete(text, state):
-	if os.path.isdir(text):
-		text += '/'
+import glob
+import os
 
-	return (glob.glob(text+'*')+[None])[state]
 
-readline.set_completer_delims(' \t\n;')
-readline.parse_and_bind("tab: complete")
-readline.set_completer(complete)
-input('file? ')
+def methods_completer(text, state):
+    methods = ['rhf', 'uhf', 'mp2', 'ccsd(t)', 'casscf']
+    # fill in the cache by partial completion if text is not empty
+    if text:
+        cache = [s for s in methods if s and s.startswith(text)]
+    else:
+        cache = methods
+
+    return (cache + [None])[state]
+
+
+def path_completer(text, state):
+    paths = glob.glob(text + '*')
+    # add '/' symbol to directories for better readability
+    for i in range(len(paths)):
+        if os.path.isdir(paths[i]):
+            paths[i] += '/'
+
+    return (paths + [None])[state]
