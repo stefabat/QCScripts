@@ -22,3 +22,20 @@ def path_completer(text, state):
             paths[i] += '/'
 
     return (paths + [None])[state]
+
+
+# Add one tab before printing
+def tprint(text):
+    print('\t' + text)
+    return
+
+
+# Check that input is an integer
+def is_int(x):
+    try:
+        a = float(x)
+        b = int(a)
+    except ValueError:
+        return False
+    else:
+        return a == b

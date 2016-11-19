@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-import rlcompleter, readline
-readline.parse_and_bind('tab: complete')
 # TODO: add everywhere defaults and exceptions checks
 
 print('\n\t\tHello! Welcome to the Gaussian09 input generation program!')

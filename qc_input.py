@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-import os		# For file- and path-related stuff
-import utilities
-import readline
+import os               # for file- and path-related stuff
+from utilities import *       # utilities of the package
+import readline         # for autocompletion capabilities
 
 print('\n\t\tHello! Welcome to the Quantum Chemistry input generation program!\n')
 
@@ -19,12 +19,9 @@ def get_parameters():
 def get_xyz():
     readline.set_completer_delims(' \t\n;')
     readline.parse_and_bind("tab: complete")
-    readline.set_completer(utilities.path_completer)
-    #filename = input('\tEnter the geometry file (.xyz): ')
+    readline.set_completer(path_completer)
     while True:
-        # TODO: add autocompletion with TAB
         filename = input('\tEnter the geometry file (.xyz): ')
-        # TODO: maybe need a check of relative/absolute paths
         if not os.path.isfile(filename):
             tprint('The file does not exist!')
             continue
@@ -41,11 +38,11 @@ def get_xyz():
     # molecule
     if len(lines[0].split()) != 1:
         tprint('The xyz file should containt only the number of atoms in the first line!')
-        get_geometry()
+        get_xyz()
 
-    atoms_num = int(lines[0])		# saving the number of atoms
-    molecule = []						# Initialize molecule datastructure
-    for i in range(2, atoms_num + 2):  # looping over the atoms
+    atoms_num = int(lines[0])           # saving the number of atoms
+    molecule = []                       # Initialize molecule datastructure
+    for i in range(2, atoms_num + 2):   # looping over the atoms
         splitted_line = lines[i].split()
         molecule.append([splitted_line[0], list(
             map(float, splitted_line[1:4]))])
@@ -59,6 +56,7 @@ def get_charge():
         if is_int(charge):
             return int(charge)
         else:
+            tprint('The charge must be an integer number!')
             continue
 
 
@@ -69,25 +67,9 @@ def get_spin():
             if int(float(spin)) > 0:
                 return int(float(spin))
             else:
+                tprint('The spin multiplicity must be at least 1!')
                 continue
 
         else:
+            tprint('The spin multiplicity must be an integer number!')
             continue
-
-
-# Add one tab before printing #
-def tprint(text):
-    print('\t' + text)
-    return
-
-# Check that input is an integer
-
-
-def is_int(x):
-    try:
-        a = float(x)
-        b = int(a)
-    except ValueError:
-        return False
-    else:
-        return a == b
