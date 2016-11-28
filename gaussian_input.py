@@ -2,8 +2,6 @@
 
 # TODO: add everywhere defaults and exceptions checks
 
-print('\n\t\tHello! Welcome to the Gaussian09 input generation program!')
-
 # TODO: automatic creation of title based on input
 title = input('\n\tEnter the title of your calculation: ')
 

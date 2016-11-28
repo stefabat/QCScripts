@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
-import os               # for file- and path-related stuff
-from utilities import *       # utilities of the package
-import readline         # for autocompletion capabilities
+import os               	# for file- and path-related stuff
+import readline				# for autocompletion capabilities
+from utilities import *		# utilities of the package
+from molecule import *		# import molecule object
 
 print('\n\t\tHello! Welcome to the Quantum Chemistry input generation program!\n')
 
@@ -34,20 +35,21 @@ def get_xyz():
     file = open(filename, 'r')  # open xyz file
     lines = list(file)			# read file line by line
 
-    # Check that the first line contains only the number of atoms in the
-    # molecule
+    # Check that the first line contains only the number of atoms in the molecule
     if len(lines[0].split()) != 1:
         tprint('The xyz file should containt only the number of atoms in the first line!')
         get_xyz()
 
-    atoms_num = int(lines[0])           # saving the number of atoms
-    molecule = []                       # Initialize molecule datastructure
-    for i in range(2, atoms_num + 2):   # looping over the atoms
+    n_atoms = int(lines[0])		# saving the number of atoms
+    atoms = []					# list of atoms
+    xyz = []					# list of cartesian coordaintes
+    for i in range(2, n_atoms + 2):   # looping over the atoms
         splitted_line = lines[i].split()
-        molecule.append([splitted_line[0], list(
-            map(float, splitted_line[1:4]))])
+        atoms.append(splitted_line[0])
+        xyz.append(list(map(float, splitted_line[1:4])))
 
-    return molecule
+    mol_name = input('\tEnter a short descriptive name for the molecule (max 4 characters): ')
+    return Molecule(atoms, xyz, n_atoms, mol_name)
 
 
 def get_charge():
