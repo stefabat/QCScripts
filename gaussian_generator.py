@@ -1,17 +1,9 @@
-#!/usr/bin/python
 
-# TODO: add everywhere defaults and exceptions checks
+import utilities as util
 
-# TODO: automatic creation of title based on input
-title = input('\n\tEnter the title of your calculation: ')
+def gaussian_generator():
+    molecule = util.get_parameters()
 
-# TODO: add TAB autocompletion for files
-geo_filename = input('\n\tEnter the geometry file (.xyz): ')
-geo_file = open(geo_filename, 'r')
-geo_lines = list(geo_file)
-
-# TODO: check that there are no white spaces
-system_name = input('\n\tEnter a short acronym for the system name: ')
 
 # TODO: make it less implicit: r -> restricted, ro -> restricted open-shell, ...
 calc_type = input('\n\tWhich type of calculations do you want to run (r,ro,u)? ')
