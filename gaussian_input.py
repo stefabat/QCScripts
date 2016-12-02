@@ -7,7 +7,7 @@ title = input('\n\tEnter the title of your calculation: ')
 
 # TODO: add TAB autocompletion for files
 geo_filename = input('\n\tEnter the geometry file (.xyz): ')
-geo_file = open(geo_filename,'r')
+geo_file = open(geo_filename, 'r')
 geo_lines = list(geo_file)
 
 # TODO: check that there are no white spaces
@@ -30,24 +30,24 @@ charge = input('\n\tWhat is the net charge of the system? ')
 spin = input('\n\tWhat is the spin multiplicity of the system? ')
 
 # systemName_method_basis_spin.com
-input_filename = '%s_%s_%s_mult%s' % (system_name,method,basis_set,spin)
+input_filename = '%s_%s_%s_mult%s' % (system_name, method, basis_set, spin)
 
 _optg = input('\n\tDo you want to optimize the geometry?[No] ')
 _freq = input('\n\tDo you want to run a frequency calculation?[No] ')
 _pop = input('\n\tDo you want to print out all orbitals?[No] ')
 
 if _pop == 'y' or _pop == 'Y' or _pop == 'yes' or _pop == 'Yes':
-	route += 'pop=full '
+    route += 'pop=full '
 else:
-	route += 'pop=regular '
+    route += 'pop=regular '
 
 if _optg == 'y' or _optg == 'Y' or _optg == 'yes' or _optg == 'Yes':
-	route += 'opt '
-	input_filename += '_optg'
+    route += 'opt '
+    input_filename += '_optg'
 
 if _freq == 'y' or _freq == 'Y' or _freq == 'yes' or _freq == 'Yes':
-	route += 'freq '
-	input_filename += '_freq'
+    route += 'freq '
+    input_filename += '_freq'
 
 input_filename += '.com'
 
@@ -57,12 +57,12 @@ _cpus = input('\n\tHow many processors do you want to use? ')
 mem = '%%NProcShared=%s' % _cpus
 cpus = '%%Mem=%sGb' % _mem
 
-input_file = open(input_filename,'w')
-input_file.writelines([mem,'\n',cpus,'\n',route,'\n\n',title,'\n\n',' ' + charge + ' ' + spin,'\n'])
+input_file = open(input_filename, 'w')
+input_file.writelines([mem, '\n', cpus, '\n', route, '\n\n', title, '\n\n', ' ' + charge + ' ' + spin, '\n'])
 
 # TODO: strip blank lines at the end of xyz
-for i in range(2,len(geo_lines)):
-	input_file.write(geo_lines[i])
+for i in range(2, len(geo_lines)):
+    input_file.write(geo_lines[i])
 
 input_file.write('\n\n\n')
 input_file.close()
