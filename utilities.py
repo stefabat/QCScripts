@@ -38,7 +38,7 @@ def get_geometry():
 
     # Check that the first line contains only the number of atoms in the molecule
     if len(lines[0].split()) != 1:
-        tprint('The xyz file should containt only the number of atoms in the first line!')
+        tprint('The xyz file should contain only the number of atoms in the first line!')
         get_geometry()
 
     return filename
@@ -131,16 +131,16 @@ def is_int(x):
 
 
 # Temporary database TODO: to move
-QC_programs = ['MOLPRO 2015.1', 'Gaussian09', 'MOLCAS 8.1', 'Psi4', 'ORCA']
-basis_sets_list = {'MOLPRO 2015.1':['STO-3G','3-21G','6-31G'],
-                   'Gaussian09':['STO-3G','3-21G','6-31G'],
-                   'MOLCAS 8.1':['STO-3G','3-21G','6-31G'],
+QC_programs = ['MOLPRO', 'Gaussian', 'MOLCAS', 'Psi4', 'ORCA']
+basis_sets_list = {'MOLPRO':['STO-3G','3-21G','6-31G'],
+                   'Gaussian':['STO-3G','3-21G','6-31G'],
+                   'MOLCAS':['STO-3G','3-21G','6-31G'],
                    'Psi4':['STO-3G','3-21G','6-31G'],
                    'ORCA':['STO-3G','3-21G','6-31G']
                    }
-methods_list = {'MOLPRO 2015.1':['RHF','ROHF','CASSCF'],
-                'Gaussian09':['RHF','ROHF','RDFT'],
-                'MOLCAS 8.1':['DMRG-CI','DMRG-SCF','CASPT2'],
+methods_list = {'MOLPRO':['RHF','ROHF','CASSCF'],
+                'Gaussian':['RHF','ROHF','RDFT'],
+                'MOLCAS':['DMRG-CI','DMRG-SCF','CASPT2'],
                 'Psi4':['RHF','ROHF','RDFT'],
                 'ORCA':['RHF','ROHF','RDFT']
                 }
